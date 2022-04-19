@@ -9,7 +9,7 @@ trigger:
 jobs:
 - job: GitGuardianShield
   container:
-    image: gitguardian/ggshield:stable
+    image: gitguardian/ggshield:latest
     options: -u 0
   pool:
     vmImage: 'ubuntu-latest'
