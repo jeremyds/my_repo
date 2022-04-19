@@ -3,12 +3,17 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+trigger:
+- main
+
 jobs:
-  - job: GitGuardianShield
-    pool:
-      vmImage: 'ubuntu-latest'
-    container: gitguardian/ggshield:latest
-    steps:
-      - script: ggshield scan ci
-        env:
-          GITGUARDIAN_API_KEY: $(gitguardianApiKey)
+- job: GitGuardianShield
+  container:
+    image: gitguardian/ggshield:stable
+    options: -u 0
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+  - script: ggshield scan ci
+    env:
+      GITGUARDIAN_API_KEY: $(gitguardianApiKey)
